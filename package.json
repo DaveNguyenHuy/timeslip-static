@@ -7,6 +7,7 @@
     "dev": "concurrently \"npm:watch\" \"npm:serve\"",
     "watch": "chokidar template.hbs .env -c \"npm run build\"",
     "serve": "live-server --no-browser --port=5174",
+    "start": "live-server dist --no-browser --port=5175",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

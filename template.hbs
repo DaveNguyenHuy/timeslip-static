@@ -146,75 +146,8 @@
       </button>
     </div>
 
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
-    ></script>
-    <script>
-      let currentId = null; async function renderTimeslip() { const params = new
-      URLSearchParams(window.location.search); const id = params.get("id");
-      currentId = id; if (!id) return alert("❌ URLが正しくありません"); try {
-      const endpoint =
-      {{#if
-        isPartner
-      }}'{{apiBaseUrl}}/timeslips/partner'{{else}}'{{apiBaseUrl}}/timeslips'{{/if}};
-      const res = await fetch(`${endpoint}?id=${id}`); const json = await
-      res.json(); const data = json.data; if (!data || json.code !== "OK") throw
-      new Error("Invalid data"); const date = new Date(data.workDate); const
-      fullDate = `${date.getFullYear()}年${date.getMonth() + 1}月<br
-      />${date.getDate()}日`; document.getElementById("fullDate").innerHTML =
-      fullDate;
-
-      {{#if isPartner}}
-        document.getElementById("companyName").innerText = data.fixPartner?.name
-        || ""; document.getElementById("primeOrganization").innerText =
-        data.fixPartnerOrganization?.name || "";
-        document.getElementById("constructionSite").innerText =
-        data.fixPartnerConstruction?.name || "";
-      {{else}}
-        document.getElementById("companyName").innerText = data.prime?.name ||
-        ""; document.getElementById("primeOrganization").innerText =
-        data.primeOrganization?.name || "";
-        document.getElementById("constructionSite").innerText =
-        data.construction?.name || "";
-      {{/if}}
-
-      document.getElementById("workingTime").innerHTML = `${data.startTime}<br
-      />〜<br />${data.endTime}<br />(休${data.breakTime}分)`;
-      document.getElementById("creatorNote").innerText = data.createdNote || "";
-      document.getElementById("signerNote").innerText = data.signerNote || "";
-      document.getElementById("workerCount").innerText = data.users.length;
-      const ul = document.getElementById("workerList"); ul.innerHTML = "";
-      data.users.forEach(user => { const li = document.createElement("li");
-      li.innerText = `${user.userCode} ${user.name}`; ul.appendChild(li); }); if
-      (data.sign) { document.getElementById("signatureImage").src =
-      `data:image/png;base64,${data.sign}`; }
-
-      {{#if isMain}}
-        const orgNames = (data.organizations || []).map(o => o.name).join("/");
-        const primeOrgNames = (data.primeOrganizations || []).map(o =>
-        o.name).join("/");
-        document.getElementById("organizationNames").innerText = orgNames.length
-        > 50 ? orgNames.slice(0, 50) + "..." : orgNames;
-        document.getElementById("primeOrganizationNames").innerText =
-        primeOrgNames.length > 50 ? primeOrgNames.slice(0, 50) + "..." :
-        primeOrgNames;
-      {{/if}}
-      } catch (err) { console.error(err); alert("❌ データ取得エラー"); } }
-      async function exportPDF() { const { jsPDF } = window.jspdf; const doc =
-      new jsPDF(); const element = document.body; const canvas = await
-      html2canvas(element, { scale: 2 }); const imgData =
-      canvas.toDataURL('image/png'); const pageWidth =
-      doc.internal.pageSize.getWidth(); const pageHeight =
-      doc.internal.pageSize.getHeight(); const ratio = Math.min(pageWidth /
-      canvas.width, pageHeight / canvas.height); const imgWidth = canvas.width *
-      ratio; const imgHeight = canvas.height * ratio; doc.addImage(imgData,
-      'PNG', 0, 0, imgWidth, imgHeight); const filename = currentId ?
-      `${currentId}.pdf` : "keibi-report.pdf"; doc.save(filename); }
-      document.querySelector('.button').addEventListener('click', exportPDF);
-      renderTimeslip();
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="assets/timeslip.js"></script>
   </body>
 </html>
