@@ -42,12 +42,12 @@
       .cell.center { text-align: center; align-content: center; }
       .cell.wide { grid-column: span 2; }
       .cell.date { width: 118px; }
-      .cell.time { height: 120px; grid-row: span 2; padding: 12px 6px; width: 118px; }
-      .cell.people-container { max-height: 120px; overflow-y: scroll; position: relative; }
+      .cell.time { height: 200px; grid-row: span 2; padding: 12px 6px; width: 118px; }
+      .cell.people-container { height: 200px; overflow-y: auto; display: block; }
       .cell.shadow { box-shadow: 0px 4px 6px 0px #0c0c0d1f inset; }
-      .people { height: auto; overflow: visible; }
-      .people ul { margin: 0; list-style: none; }
-      .total { position: absolute; right: 8px; bottom: 8px; background: transparent; z-index: 1; font-weight: 700; text-align: right; }
+      .people { display: flex; flex-direction: column; min-height: 100%; }
+      .people ul { margin: 0; list-style: none; padding-bottom: 4px; flex-grow: 1;}
+      .total { position: sticky; bottom: 0; align-self: flex-end; display: inline-flex; flex-direction: column; gap: 2px; align-items: flex-end; white-space: nowrap; }
       .signature { display: flex; align-items: center; justify-content: center; height: 152px; width: 118px; }
       .button { margin-top: 52px; margin-left: auto; margin-right: auto; width: 80px; height: 80px; border-radius: 16px; border: 2px solid #a4cc52; background: linear-gradient(180deg, #94c32f 0%, #7eab1f 100%); box-shadow: 0px 3px 8px 0px #00000030, 3px 1px 15px 0px #ffffff80 inset, 0px -3px 10px 0px #0000005e inset; display: flex; flex-direction: column; align-items: center; justify-content: center; }
       .button .text { color: white; font-weight: 700; font-size: 10px; line-height: 18px; letter-spacing: 0%; }
@@ -68,7 +68,8 @@
 
         <div class="cell double people-container">
           <div class="people">
-            <div class="total">
+            <ul id="workerList"></ul>
+             <div class="total">
               <svg
                 width="24"
                 height="25"
@@ -83,13 +84,8 @@
                   fill="#424242"
                 />
               </svg>
-              <br />
-              計
-              <span id="workerCount"></span>
-              名
+              <span>計<span id="workerCount"></span>名</span>
             </div>
-
-            <ul id="workerList"></ul>
           </div>
         </div>
         <div class="cell time center" id="workingTime"></div>

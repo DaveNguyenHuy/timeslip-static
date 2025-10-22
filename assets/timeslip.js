@@ -10,6 +10,33 @@
     return `${hh}:${mm}`;
   }
 
+  const CERT_ICON_SVG = `<svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.99902 4.99707C13.6809 4.99707 16.666 7.98216 16.666 11.6641C16.6658 15.3458 13.6808 18.3301 9.99902 18.3301C6.31723 18.3301 3.33221 15.3458 3.33203 11.6641C3.33203 7.98216 6.31713 4.99707 9.99902 4.99707ZM9.99902 9.16406C9.76232 9.16406 9.60375 9.44761 9.28711 10.0156L9.20508 10.1631C9.11522 10.3243 9.0701 10.4048 9 10.458C8.92987 10.5112 8.8426 10.5308 8.66797 10.5703L8.50879 10.6064C7.8939 10.7456 7.58682 10.8156 7.51367 11.0508C7.44054 11.286 7.65013 11.5313 8.06934 12.0215L8.17773 12.1484C8.29667 12.2875 8.35604 12.3573 8.38281 12.4434C8.40956 12.5295 8.40081 12.6228 8.38281 12.8086L8.36621 12.9775C8.30285 13.6314 8.2715 13.9581 8.46289 14.1035C8.65436 14.2489 8.94204 14.1166 9.51758 13.8516L9.66699 13.7832C9.8306 13.7079 9.91231 13.6699 9.99902 13.6699C10.0857 13.6699 10.1674 13.7079 10.3311 13.7832L10.4805 13.8516C11.056 14.1166 11.3437 14.2489 11.5352 14.1035C11.7266 13.9581 11.6952 13.6314 11.6318 12.9775L11.6152 12.8086C11.5972 12.6228 11.5885 12.5295 11.6152 12.4434C11.642 12.3573 11.7014 12.2875 11.8203 12.1484L11.9287 12.0215C12.3479 11.5313 12.5575 11.286 12.4844 11.0508C12.4112 10.8156 12.1041 10.7456 11.4893 10.6064L11.3301 10.5703C11.1554 10.5308 11.0682 10.5112 10.998 10.458C10.9279 10.4048 10.8828 10.3243 10.793 10.1631L10.7109 10.0156C10.3943 9.44761 10.2357 9.16406 9.99902 9.16406ZM10.832 1.66406C12.4034 1.66406 13.1896 1.66419 13.6777 2.15234C14.1586 2.6336 14.1659 3.40383 14.166 4.93066C12.9558 4.18009 11.5278 3.74707 9.99902 3.74707C8.47021 3.74707 7.04228 4.18009 5.83203 4.93066C5.83213 3.40383 5.8394 2.6336 6.32031 2.15234C6.80847 1.66419 7.59467 1.66406 9.16602 1.66406H10.832Z" fill="#dc6803"/></svg>`;
+  const PARTNER_ICON_SVG = `<svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.14062 7.65625C5.75598 7.65625 7.07031 8.97059 7.07031 10.5859C7.07031 11.5552 7.85883 12.3438 8.82812 12.3438H9.41406V14.6875H8.82812C6.56676 14.6875 4.72656 12.8473 4.72656 10.5859H3.55469C3.55469 12.4065 4.49046 14.0019 5.89844 14.9482V17.0312H0L0.929688 10.1719C1.13452 8.73801 2.38096 7.65637 3.8291 7.65625H4.14062ZM16.1709 7.65625C17.619 7.65637 18.8655 8.73801 19.0703 10.1719L20 17.0312H14.1016V14.9668C15.5132 14.0196 16.4452 12.4104 16.4453 10.5859H15.2734C15.2732 12.8475 13.4331 14.6875 11.1719 14.6875H10.5859V12.3438H11.1719C12.1412 12.3438 12.9297 11.5552 12.9297 10.5859C12.9297 8.97059 14.244 7.65625 15.8594 7.65625H16.1709ZM4.72656 2.96875C6.02098 2.96875 7.07031 4.01808 7.07031 5.3125C7.07031 6.60692 6.02098 7.65625 4.72656 7.65625C3.43215 7.65625 2.38281 6.60692 2.38281 5.3125C2.38281 4.01808 3.43215 2.96875 4.72656 2.96875ZM15.2734 2.96875C16.5679 2.96875 17.6172 4.01808 17.6172 5.3125C17.6172 6.60692 16.5679 7.65625 15.2734 7.65625C13.979 7.65625 12.9297 6.60692 12.9297 5.3125C12.9297 4.01808 13.979 2.96875 15.2734 2.96875Z" fill="currentColor"/></svg>`;
+
+  function createUserListItem(user, isPartner) {
+    const li = document.createElement("li");
+    const text = user.userCode ? `${user.userCode} ${user.name}` : user.name;
+    li.appendChild(document.createTextNode(text));
+    if (user && user.cert === true) {
+      const span = document.createElement("span");
+      span.style.marginLeft = "6px";
+      span.style.display = "inline-flex";
+      span.style.verticalAlign = "middle";
+      span.innerHTML = CERT_ICON_SVG;
+      li.appendChild(span);
+    }
+    if (isPartner) {
+      const span = document.createElement("span");
+      span.style.marginLeft = "6px";
+      span.style.display = "inline-flex";
+      span.style.verticalAlign = "middle";
+      span.style.color = "#424242";
+      span.innerHTML = PARTNER_ICON_SVG;
+      li.appendChild(span);
+    }
+    return li;
+  }
+
   async function renderTimeslip() {
     const params = new URLSearchParams(window.location.search);
     const id = params.get("id");
@@ -22,8 +49,14 @@
     const defaultEndpoint = "https://security.ecopunch.vn/api/v1/public/timeslips";
     const endpoint = document.body?.dataset?.endpoint || defaultEndpoint;
 
+    const isPartner = !!window.location.pathname.includes("partner_timeslip");
+    let fetchUrl = `${endpoint}?id=${encodeURIComponent(id)}`;
+    if (isPartner) {
+      fetchUrl = `${endpoint}/partner?id=${encodeURIComponent(id)}`;
+    }
+
     try {
-      const res = await fetch(`${endpoint}?id=${encodeURIComponent(id)}`);
+      const res = await fetch(fetchUrl);
       const json = await res.json();
       const data = json.data;
       if (!data || json.code !== "OK") throw new Error("Invalid data");
@@ -66,9 +99,10 @@
       if (ul) {
         ul.innerHTML = "";
         (data.users || []).forEach((user) => {
-          const li = document.createElement("li");
-          li.innerText = user.userCode ? `${user.userCode} ${user.name}` : user.name;
-          ul.appendChild(li);
+          ul.appendChild(createUserListItem(user, false));
+        });
+        (data.partnerUsers || []).forEach((user) => {
+          ul.appendChild(createUserListItem(user, true));
         });
       }
 
