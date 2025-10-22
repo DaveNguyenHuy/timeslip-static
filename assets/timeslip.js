@@ -67,7 +67,7 @@
         ul.innerHTML = "";
         (data.users || []).forEach((user) => {
           const li = document.createElement("li");
-          li.innerText = `${user.userCode} ${user.name}`;
+          li.innerText = user.userCode ? `${user.userCode} ${user.name}` : user.name;
           ul.appendChild(li);
         });
       }
