@@ -1,6 +1,8 @@
 /* Timeslip page script - shared by prime/partner and standalone pages */
 (function () {
   let currentId = null;
+  let currentData = null; // cache for PDF generation
+  const templateCache = {}; // Handlebars template cache
 
   function formatHHmm(time) {
     if (time == null) return "";
@@ -60,6 +62,7 @@
       const json = await res.json();
       const data = json.data;
       if (!data || json.code !== "OK") throw new Error("Invalid data");
+      currentData = data;
 
       const date = new Date(data.workDate);
       const fullDate = `${date.getFullYear()}年${date.getMonth() + 1}月<br />${date.getDate()}日`;
@@ -116,19 +119,82 @@
     }
   }
 
+  function buildPdfContext(data) {
+    const date = new Date(data.workDate);
+    const companyName = data.fixPartner?.name || data.prime?.name || "";
+    const primeOrgName = data.fixPartnerOrganization?.name || data.primeOrganization?.name || "";
+    const constructionName = data.fixPartnerConstruction?.name || data.construction?.name || "";
+    const users = [...(data.users || []), ...(data.partnerUsers || [])];
+    return {
+      title: "警備服務報告書", // no page fraction
+      companyLine: `${companyName}　${primeOrgName}`,
+      dateDisplay: `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`,
+      startTime: formatHHmm(data.startTime),
+      endTime: formatHHmm(data.endTime),
+      breakTime: data.breakTime,
+      isNight: data.timeType === "NIGHT",
+      createdNote: data.createdNote || "",
+      signerNote: data.signerNote || "",
+      constructionName,
+      sign: data.sign ? `data:image/png;base64,${data.sign}` : "",
+      users: users.map((u) => ({ display: u.userCode ? `${u.userCode} ${u.name}` : u.name })),
+      userCount: users.length,
+    };
+  }
+
+  async function loadTemplate(path) {
+    if (templateCache[path]) return templateCache[path];
+    if (!window.Handlebars) return null;
+    try {
+      const res = await fetch(path, { cache: "no-store" });
+      const tpl = await res.text();
+      const compiled = window.Handlebars.compile(tpl);
+      templateCache[path] = compiled;
+      return compiled;
+    } catch (e) {
+      console.warn("Failed to load template", e);
+      return null;
+    }
+  }
+
+  async function renderPdfA4(data) {
+    const compile = await loadTemplate("/assets/pdf-a4.hbs");
+    if (!compile) return null;
+    const html = compile(buildPdfContext(data));
+    const wrapper = document.createElement("div");
+    wrapper.style.position = "fixed";
+    wrapper.style.left = "-10000px";
+    wrapper.style.top = "0";
+    wrapper.style.zIndex = "-1";
+    wrapper.innerHTML = html;
+    return wrapper;
+  }
+
   async function exportPDF() {
     const { jsPDF } = window.jspdf || {};
     if (!jsPDF) return;
-    const doc = new jsPDF();
-    const element = document.body;
-    const canvas = await html2canvas(element, { scale: 2 });
+    if (!currentData) {
+      try { await renderTimeslip(); } catch (_) {}
+    }
+    if (!currentData) return;
+
+    const reportRoot = await renderPdfA4(currentData);
+    if (!reportRoot) return;
+    document.body.appendChild(reportRoot);
+    const a4Element = reportRoot.firstChild; // root of template
+    const canvas = await html2canvas(a4Element, { scale: 2, backgroundColor: "#ffffff" });
+    document.body.removeChild(reportRoot);
+
     const imgData = canvas.toDataURL("image/png");
+    const doc = new jsPDF({ unit: "mm", format: "a4" });
     const pageWidth = doc.internal.pageSize.getWidth();
     const pageHeight = doc.internal.pageSize.getHeight();
     const ratio = Math.min(pageWidth / canvas.width, pageHeight / canvas.height);
     const imgWidth = canvas.width * ratio;
     const imgHeight = canvas.height * ratio;
-    doc.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+    const x = (pageWidth - imgWidth) / 2;
+    const y = (pageHeight - imgHeight) / 2;
+    doc.addImage(imgData, "PNG", x, y, imgWidth, imgHeight);
     const filename = currentId ? `${currentId}.pdf` : "keibi-report.pdf";
     doc.save(filename);
   }
