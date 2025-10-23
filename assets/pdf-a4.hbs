@@ -20,7 +20,7 @@
   <!-- Main table with exact layout from reference image -->
   <!-- A4 landscape: 1123px - 128px padding = 995px content width -->
   <!-- Left side 50%: 497.5px, Right side 50%: 497.5px -->
-  <table style="width:100%; border:2px solid #9E9E9E; border-collapse:collapse; table-layout:fixed;">
+  <table style="width:100%; border:1px solid #9E9E9E; border-collapse:collapse; table-layout:fixed;">
     <colgroup>
       <col style="width:60px" />
       <col />
@@ -32,46 +32,46 @@
 
     <!-- Row 1: 日付 | Date | 施工時間 | Time | 備考(警備用) | createdNote -->
     <tr style="height:40px;">
-      <td style="background:#B5D573; font-weight:700; color:#212121; font-size:12px; text-align:center; border:1px solid #9E9E9E; padding:4px; vertical-align:middle; line-height:1.2;">日付</td>
-      <td style="border:1px solid #9E9E9E; padding:4px 8px; font-weight:700; color:#212121; font-size:11px; vertical-align:middle;">{{dateDisplay}}</td>
-      <td style="background:#B5D573; font-weight:700; color:#212121; font-size:12px; text-align:center; border:1px solid #9E9E9E; padding:4px; vertical-align:middle; line-height:1.2;">施工時間</td>
-      <td style="border:1px solid #9E9E9E; padding:4px 8px; font-weight:700; color:#212121; font-size:11px; vertical-align:middle;">{{startTime}}~{{endTime}} (休 {{breakTime}} 分)</td>
-      <td rowspan="2" style="background:#B5D573; font-weight:700; color:#212121; font-size:12px; text-align:center; border:1px solid #9E9E9E; padding:8px 4px; vertical-align:middle; line-height:1.4; width:60px;">
+      <td style="background:#B5D573; font-weight:700; color:#212121; font-size:12px; text-align:center; border-right:1px solid #9E9E9E; border-bottom:1px solid #9E9E9E; padding:4px; vertical-align:middle; line-height:1.2;">日付</td>
+      <td style="border-right:1px solid #9E9E9E; border-bottom:1px solid #9E9E9E; padding:4px 8px; font-weight:700; color:#212121; font-size:11px; vertical-align:middle; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{dateDisplay}}</td>
+      <td style="background:#B5D573; font-weight:700; color:#212121; font-size:12px; text-align:center; border-right:1px solid #9E9E9E; border-bottom:1px solid #9E9E9E; padding:4px; vertical-align:middle; line-height:1.2;">施工時間</td>
+      <td style="border-right:1px solid #9E9E9E; border-bottom:1px solid #9E9E9E; padding:4px 8px; font-weight:700; color:#212121; font-size:11px; vertical-align:middle; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{startTime}}~{{endTime}} (休 {{breakTime}} 分)</td>
+      <td rowspan="2" style="background:#B5D573; font-weight:700; color:#212121; font-size:12px; text-align:center; border-right:1px solid #9E9E9E; border-bottom:1px solid #9E9E9E; padding:8px 4px; vertical-align:middle; line-height:1.4; width:60px;">
         <div style="display:flex; flex-direction:column; align-items:center; gap:2px;">
           <span>備考</span>
           <span>(警備用)</span>
         </div>
       </td>
-      <td rowspan="2" style="border:1px solid #9E9E9E; padding:8px; font-weight:700; color:#212121; font-size:11px; vertical-align:top; word-break:break-all; white-space:pre-wrap; height:80px;">{{createdNote}}</td>
+      <td rowspan="2" style="border-bottom:1px solid #9E9E9E; padding:8px; font-weight:700; color:#212121; font-size:11px; vertical-align:top; height:80px; overflow:hidden; word-wrap:break-word;">{{createdNote}}</td>
     </tr>
 
     <!-- Row 2: お客様 | Company -->
     <tr style="height:40px;">
-      <td rowspan="2" style="background:#B5D573; font-weight:700; color:#212121; font-size:12px; text-align:center; border:1px solid #9E9E9E; padding:4px; vertical-align:middle; line-height:1.2;">お客様</td>
-      <td colspan="3" style="border:1px solid #9E9E9E; padding:4px 8px; font-weight:700; color:#212121; font-size:11px; vertical-align:middle; word-break:break-all;">{{companyName}}</td>
+      <td rowspan="2" style="background:#B5D573; font-weight:700; color:#212121; font-size:12px; text-align:center; border-right:1px solid #9E9E9E; border-bottom:1px solid #9E9E9E; padding:4px; vertical-align:middle; line-height:1.2;">お客様</td>
+      <td colspan="3" style="border-right:1px solid #9E9E9E; border-bottom:1px solid #9E9E9E; padding:4px 8px; font-weight:700; color:#212121; font-size:11px; vertical-align:middle; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{companyName}}</td>
     </tr>
 
     <!-- Row 3: Organization | 備考(元請用) | signerNote -->
     <tr style="height:40px;">
-      <td colspan="3" style="border:1px solid #9E9E9E; padding:4px 8px; font-weight:700; color:#212121; font-size:11px; vertical-align:middle; word-break:break-all;">{{organizationName}}</td>
-      <td rowspan="2" style="background:#B5D573; font-weight:700; color:#212121; font-size:12px; text-align:center; border:1px solid #9E9E9E; padding:8px 4px; vertical-align:middle; line-height:1.4; width:60px;">
+      <td colspan="3" style="border-right:1px solid #9E9E9E; border-bottom:1px solid #9E9E9E; padding:4px 8px; font-weight:700; color:#212121; font-size:11px; vertical-align:middle; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{organizationName}}</td>
+      <td rowspan="2" style="background:#B5D573; font-weight:700; color:#212121; font-size:12px; text-align:center; border-right:1px solid #9E9E9E; border-bottom:1px solid #9E9E9E; padding:8px 4px; vertical-align:middle; line-height:1.4; width:60px;">
         <div style="display:flex; flex-direction:column; align-items:center; gap:2px;">
           <span>備考</span>
           <span>(元請用)</span>
         </div>
       </td>
-      <td rowspan="2" style="border:1px solid #9E9E9E; padding:8px; font-weight:700; color:#212121; font-size:11px; vertical-align:top; word-break:break-all; white-space:pre-wrap; height:80px;">{{signerNote}}</td>
+      <td rowspan="2" style="border-bottom:1px solid #9E9E9E; padding:8px; font-weight:700; color:#212121; font-size:11px; vertical-align:top; height:80px; overflow:hidden; word-wrap:break-word;">{{signerNote}}</td>
     </tr>
 
     <!-- Row 4: 工事名 | Construction -->
     <tr style="height:40px;">
-      <td style="background:#B5D573; font-weight:700; color:#212121; font-size:12px; text-align:center; border:1px solid #9E9E9E; padding:4px; vertical-align:middle; line-height:1.2;">工事名</td>
-      <td colspan="3" style="border:1px solid #9E9E9E; padding:4px 8px; font-weight:700; color:#212121; font-size:11px; vertical-align:middle; word-break:break-all;">{{constructionName}}</td>
+      <td style="background:#B5D573; font-weight:700; color:#212121; font-size:12px; text-align:center; border-right:1px solid #9E9E9E; border-bottom:1px solid #9E9E9E; padding:4px; vertical-align:middle; line-height:1.2; width:60px;">工事名</td>
+      <td colspan="3" style="border-right:1px solid #9E9E9E; padding:4px 8px; font-weight:700; color:#212121; font-size:11px; vertical-align:middle; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{constructionName}}</td>
     </tr>
   </table>
 
   <!-- Workers section - 8x6 grid (8 rows x 6 columns, separate table) -->
-  <table style="width:100%; border:2px solid #9E9E9E; border-top:none; border-collapse:collapse; table-layout:fixed;">
+  <table style="width:100%; border:1px solid #9E9E9E; border-top:none; border-collapse:collapse; table-layout:fixed;">
     <colgroup>
       <col style="width:60px" />
       <col style="width:155px" />
@@ -85,8 +85,8 @@
     {{#each userGrid}}
       {{#if @first}}
       <tr style="height:40px;">
-        <td rowspan="8" style="background:#B5D573; border:1px solid #9E9E9E; padding:8px 4px; height:320px;">
-          <div style="display:flex; flex-direction:column; align-items:center; height:100%;">
+        <td rowspan="8" style="background:#B5D573; border-right:1px solid #9E9E9E; border-bottom:1px solid #9E9E9E; padding:4px; height:320px; width:60px;">
+          <div style="display:flex; flex-direction:column; align-items:center; height:100%; padding:4px 0;">
             <div style="flex:1; display:flex; align-items:center;">
               <span style="font-weight:700; color:#212121; font-size:12px; line-height:1.2;">隊員名</span>
             </div>
@@ -96,13 +96,13 @@
           </div>
         </td>
         {{#each cells}}
-        <td style="border:1px solid #9E9E9E; padding:4px 6px; font-weight:700; color:#212121; font-size:10px; vertical-align:middle; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{this}}</td>
+        <td style="border-right:1px solid #9E9E9E; border-bottom:1px solid #9E9E9E; padding:4px 6px; font-weight:700; color:#212121; font-size:10px; vertical-align:middle; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{this}}</td>
         {{/each}}
       </tr>
       {{else}}
       <tr style="height:40px;">
         {{#each cells}}
-        <td style="border:1px solid #9E9E9E; padding:4px 6px; font-weight:700; color:#212121; font-size:10px; vertical-align:middle; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{this}}</td>
+        <td style="border-right:1px solid #9E9E9E; border-bottom:1px solid #9E9E9E; padding:4px 6px; font-weight:700; color:#212121; font-size:10px; vertical-align:middle; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{this}}</td>
         {{/each}}
       </tr>
       {{/if}}

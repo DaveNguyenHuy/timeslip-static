@@ -36,8 +36,8 @@
       h1 { margin: 0; text-align: center; font-weight: 700; font-size: 20px; line-height: 30px; margin-bottom: 12px; }
       .grid { display: grid; grid-template-columns: 2fr 1fr; gap: 0.5rem; }
       .double { grid-row: span 2; }
-      .cell { background: #e0e0e0; padding: 12px; border-radius: 8px; font-size: 1rem; min-width: 48px; font-weight: 700; min-height: 48px; line-height: 1.5rem; }
-      .cell.big { height: 72px; overflow-y: auto; }
+      .cell { background: #e0e0e0; padding: 12px; border-radius: 8px; font-size: 1rem; min-width: 48px; font-weight: 700; min-height: 48px; line-height: 1.5rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .cell.big { height: 72px; overflow-y: auto; white-space: normal; }
       .cell.right { text-align: right; }
       .cell.center { text-align: center; align-content: center; }
       .cell.wide { grid-column: span 2; }
@@ -88,7 +88,13 @@
             </div>
           </div>
         </div>
-        <div class="cell time center" id="workingTime"></div>
+        <div class="cell time center" id="workingTime" style="position: relative;">
+          {{#if isCancel}}
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: absolute; top: 8px; right: 8px; width: 20px; height: 20px;">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M11.75 6.25C8.4364 6.25 5.75 8.9364 5.75 12.25C5.75 13.1761 5.95987 14.0535 6.3348 14.8367L14.3369 6.8348C13.5535 6.45987 12.6764 6.25 11.75 6.25ZM17.1652 9.66307L9.16307 17.6652C9.94627 18.0401 10.8236 18.25 11.75 18.25C15.0636 18.25 17.75 15.5636 17.75 12.25C17.75 11.3236 17.5401 10.4465 17.1652 9.66307ZM1.75 12.25C1.75 6.72707 6.22707 2.25 11.75 2.25C17.2729 2.25 21.75 6.72707 21.75 12.25C21.75 17.7729 17.2729 22.25 11.75 22.25C6.22707 22.25 1.75 17.7729 1.75 12.25Z" fill="#f04438"/>
+          </svg>
+          {{/if}}
+        </div>
         <div class="cell shadow big" id="creatorNote"></div>
         <div class="cell double signature"><img
             id="signatureImage"

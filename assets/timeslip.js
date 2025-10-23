@@ -126,11 +126,6 @@
     const constructionName = data.fixPartnerConstruction?.name || data.construction?.name || "";
     const users = [...(data.users || []), ...(data.partnerUsers || [])];
 
-    console.log('DEBUG - data.users:', data.users);
-    console.log('DEBUG - data.partnerUsers:', data.partnerUsers);
-    console.log('DEBUG - combined users array:', users);
-    console.log('DEBUG - users.length:', users.length);
-
     // Create 8x6 user grid (8 rows x 6 columns)
     const userDisplays = users.map((u) => u.userCode ? `${u.userCode} ${u.name}` : u.name);
     const userGrid = [];
@@ -156,6 +151,7 @@
       endTime: formatHHmm(data.endTime),
       breakTime: data.breakTime,
       isNight: data.timeType === "NIGHT",
+      isCancel: data.isCancel === true,
       createdNote: data.createdNote || "",
       signerNote: data.signerNote || "",
       constructionName,
