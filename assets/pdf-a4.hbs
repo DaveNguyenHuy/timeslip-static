@@ -1,5 +1,5 @@
-<div style="width:794px;min-height:1123px;background:#ffffff;color:#111;box-sizing:border-box;padding:24px 16px;font-family:'Gothic A1','Noto Sans JP',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Hiragino Kaku Gothic ProN',Meiryo,Arial,sans-serif;display:flex;flex-direction:column;gap:16px;">
-  <div style="display:grid;grid-template-columns:1fr 180px;align-items:start;gap:16px;">
+<div style="width:1123px;min-height:794px;background:#ffffff;color:#111;box-sizing:border-box;padding:32px 64px;font-family:'Gothic A1','Noto Sans JP',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Hiragino Kaku Gothic ProN',Meiryo,Arial,sans-serif;display:flex;flex-direction:column;">
+  <div style="display:grid;grid-template-columns:1fr 180px;align-items:start;gap:16px;margin-bottom:16px;">
     <div style="min-height:100px;display:flex;flex-direction:column;justify-content:space-between;">
       <div style="font-size:16px;font-weight:700;color:#555555;">{{title}}</div>
       <div style="font-size:14px;font-weight:700;color:#555555;">{{companyLine}}</div>
@@ -16,73 +16,174 @@
       </div>
     </div>
   </div>
+
+  <!-- Main table with exact layout from reference image -->
+  <!-- A4 landscape: 1123px - 128px padding = 995px content width -->
+  <!-- Left side 50%: 497.5px, Right side 50%: 497.5px -->
   <table style="width:100%; border:2px solid #9E9E9E; border-collapse:collapse; table-layout:fixed;">
     <colgroup>
-      <col style="width:120px" />
+      <col style="width:60px" />
       <col />
-      <col style="width:120px" />
+      <col style="width:60px" />
       <col />
-      <col style="width:120px" />
-      <col />
+      <col style="width:60px" />
+      <col style="width:437.5px" />
     </colgroup>
-    <tr>
-      <td style="background:#bfe08b; font-weight:700; text-align:center; border:1px solid #9E9E9E; padding:10px;">日付</td>
-      <td style="border:1px solid #9E9E9E; padding:10px 12px;">{{dateDisplay}}</td>
-      <td style="background:#bfe08b; font-weight:700; text-align:center; border:1px solid #9E9E9E; padding:10px;">施工時間</td>
-      <td style="border:1px solid #9E9E9E; padding:10px 12px;">
-        <div style="display:flex; align-items:center; gap:12px;">
-          <div>
-          {{#if isNight}}
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 21C16.9706 21 21 16.9706 21 12C21 11.5836 20.3759 11.5148 20.1605 11.8712C19.1361 13.5666 17.2754 14.7 15.15 14.7C11.9191 14.7 9.3 12.0809 9.3 8.85C9.3 6.72461 10.4334 4.86395 12.1288 3.83948C12.4852 3.62412 12.4164 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z" fill="#424242"/></svg>
-          {{else}}
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17.5814 12C17.5814 15.0825 15.0825 17.5814 12 17.5814C8.91749 17.5814 6.4186 15.0825 6.4186 12C6.4186 8.91749 8.91749 6.4186 12 6.4186C15.0825 6.4186 17.5814 8.91749 17.5814 12Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M12 0C12.4624 0 12.8372 0.374835 12.8372 0.837209V3.06977C12.8372 3.53214 12.4624 3.90698 12 3.90698C11.5376 3.90698 11.1628 3.53214 11.1628 3.06977V0.837209C11.1628 0.374835 11.5376 0 12 0ZM2.69989 2.75284C3.01189 2.4116 3.54145 2.38789 3.8827 2.69989L6.36308 4.96771C6.70433 5.27971 6.72804 5.80926 6.41604 6.15051C6.10404 6.49175 5.57447 6.51546 5.23323 6.20346L2.75284 3.93565C2.4116 3.62365 2.38789 3.09409 2.69989 2.75284ZM21.3002 2.75284C21.6122 3.09409 21.5884 3.62365 21.2471 3.93565L18.7668 6.20346C18.4255 6.51546 17.896 6.49175 17.584 6.15051C17.272 5.80926 17.2956 5.27971 17.6369 4.96771L20.1174 2.69989C20.4586 2.38789 20.9881 2.4116 21.3002 2.75284ZM0 12C0 11.5376 0.374835 11.1628 0.837209 11.1628H3.06977C3.53214 11.1628 3.90698 11.5376 3.90698 12C3.90698 12.4624 3.53214 12.8372 3.06977 12.8372H0.837209C0.374835 12.8372 0 12.4624 0 12ZM20.093 12C20.093 11.5376 20.4679 11.1628 20.9302 11.1628H23.1628C23.6252 11.1628 24 11.5376 24 12C24 12.4624 23.6252 12.8372 23.1628 12.8372H20.9302C20.4679 12.8372 20.093 12.4624 20.093 12ZM17.6099 17.6095C17.9368 17.2826 18.4669 17.2826 18.7939 17.6095L21.2743 20.0902C21.6012 20.4172 21.6011 20.9473 21.2742 21.2743C20.9472 21.6012 20.4171 21.6011 20.0902 21.2742L17.6099 18.7935C17.2829 18.4665 17.2829 17.9365 17.6099 17.6095ZM6.39033 17.6096C6.71728 17.9366 6.71728 18.4667 6.39033 18.7937L3.9097 21.2743C3.58275 21.6012 3.05267 21.6012 2.72571 21.2743C2.39876 20.9473 2.39876 20.4172 2.72571 20.0903L5.20634 17.6096C5.53328 17.2827 6.06337 17.2827 6.39033 17.6096ZM12 20.093C12.4624 20.093 12.8372 20.4679 12.8372 20.9302V23.1628C12.8372 23.6252 12.4624 24 12 24C11.5376 24 11.1628 23.6252 11.1628 23.1628V20.9302C11.1628 20.4679 11.5376 20.093 12 20.093Z" fill="currentColor"/></svg>
-          {{/if}}
-          </div>
-          <div>
-            <div>{{startTime}} ~ {{endTime}}</div>
-            <div>（休{{breakTime}}分）</div>
-          </div>
+
+    <!-- Row 1: 日付 | Date | 施工時間 | Time | 備考(警備用) | createdNote -->
+    <tr style="height:40px;">
+      <td style="background:#B5D573; font-weight:700; color:#212121; font-size:12px; text-align:center; border:1px solid #9E9E9E; padding:4px; vertical-align:middle; line-height:1.2;">日付</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 8px; font-weight:700; color:#212121; font-size:11px; vertical-align:middle;">{{dateDisplay}}</td>
+      <td style="background:#B5D573; font-weight:700; color:#212121; font-size:12px; text-align:center; border:1px solid #9E9E9E; padding:4px; vertical-align:middle; line-height:1.2;">施工時間</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 8px; font-weight:700; color:#212121; font-size:11px; vertical-align:middle;">{{startTime}}~{{endTime}} (休 {{breakTime}} 分)</td>
+      <td rowspan="2" style="background:#B5D573; font-weight:700; color:#212121; font-size:12px; text-align:center; border:1px solid #9E9E9E; padding:8px 4px; vertical-align:middle; line-height:1.4; width:60px;">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:2px;">
+          <span>備考</span>
+          <span>(警備用)</span>
         </div>
       </td>
-      <td style="background:#bfe08b; font-weight:700; text-align:center; border:1px solid #9E9E9E; padding:10px;">備考（警備用）</td>
-      <td style="border:1px solid #9E9E9E; padding:10px 12px;">{{createdNote}}</td>
+      <td rowspan="2" style="border:1px solid #9E9E9E; padding:8px; font-weight:700; color:#212121; font-size:11px; vertical-align:top; word-break:break-all; white-space:pre-wrap; height:80px;">{{createdNote}}</td>
     </tr>
-    <tr>
-      <td style="background:#bfe08b; font-weight:700; text-align:center; border:1px solid #9E9E9E; padding:10px;">お客様</td>
-      <td colspan="3" style="border:1px solid #9E9E9E; padding:10px 12px;">{{companyLine}}</td>
-      <td style="background:#bfe08b; font-weight:700; text-align:center; border:1px solid #9E9E9E; padding:10px;">備考（元請用）</td>
-      <td style="border:1px solid #9E9E9E; padding:10px 12px;">{{signerNote}}</td>
+
+    <!-- Row 2: お客様 | Company -->
+    <tr style="height:40px;">
+      <td rowspan="2" style="background:#B5D573; font-weight:700; color:#212121; font-size:12px; text-align:center; border:1px solid #9E9E9E; padding:4px; vertical-align:middle; line-height:1.2;">お客様</td>
+      <td colspan="3" style="border:1px solid #9E9E9E; padding:4px 8px; font-weight:700; color:#212121; font-size:11px; vertical-align:middle; word-break:break-all;">{{companyName}}</td>
     </tr>
-    <tr>
-      <td style="background:#bfe08b; font-weight:700; text-align:center; border:1px solid #9E9E9E; padding:10px;">工事名</td>
-      <td colspan="5" style="border:1px solid #9E9E9E; padding:10px 12px;">{{constructionName}}</td>
+
+    <!-- Row 3: Organization | 備考(元請用) | signerNote -->
+    <tr style="height:40px;">
+      <td colspan="3" style="border:1px solid #9E9E9E; padding:4px 8px; font-weight:700; color:#212121; font-size:11px; vertical-align:middle; word-break:break-all;">{{organizationName}}</td>
+      <td rowspan="2" style="background:#B5D573; font-weight:700; color:#212121; font-size:12px; text-align:center; border:1px solid #9E9E9E; padding:8px 4px; vertical-align:middle; line-height:1.4; width:60px;">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:2px;">
+          <span>備考</span>
+          <span>(元請用)</span>
+        </div>
+      </td>
+      <td rowspan="2" style="border:1px solid #9E9E9E; padding:8px; font-weight:700; color:#212121; font-size:11px; vertical-align:top; word-break:break-all; white-space:pre-wrap; height:80px;">{{signerNote}}</td>
+    </tr>
+
+    <!-- Row 4: 工事名 | Construction -->
+    <tr style="height:40px;">
+      <td style="background:#B5D573; font-weight:700; color:#212121; font-size:12px; text-align:center; border:1px solid #9E9E9E; padding:4px; vertical-align:middle; line-height:1.2;">工事名</td>
+      <td colspan="3" style="border:1px solid #9E9E9E; padding:4px 8px; font-weight:700; color:#212121; font-size:11px; vertical-align:middle; word-break:break-all;">{{constructionName}}</td>
     </tr>
   </table>
 
-  <table style="width:100%; border-left:2px solid #9E9E9E; border-right:2px solid #9E9E9E; border-bottom:2px solid #9E9E9E; border-collapse:collapse; table-layout:fixed; margin-top:12px;">
+  <!-- Workers section - 8x6 grid (8 rows x 6 columns, separate table) -->
+  <table style="width:100%; border:2px solid #9E9E9E; border-top:none; border-collapse:collapse; table-layout:fixed;">
     <colgroup>
-      <col style="width:120px" />
-      <col />
+      <col style="width:60px" />
+      <col style="width:155px" />
+      <col style="width:155px" />
+      <col style="width:155px" />
+      <col style="width:155px" />
+      <col style="width:155px" />
+      <col style="width:155px" />
     </colgroup>
-    <tr>
-      <td style="background:#bfe08b; font-weight:700; text-align:center; border:1px solid #9E9E9E; padding:10px;">隊員名</td>
-      <td style="border:1px solid #9E9E9E; padding:0;">
-        <table style="width:100%; border-collapse:collapse; table-layout:fixed;">
-          <colgroup>
-            <col span="8" />
-          </colgroup>
-          <tr>
-            {{#each users}}
-              <td style="border-left:1px solid #9E9E9E; border-top:1px solid #9E9E9E; padding:6px 8px; font-size:12px;">{{display}}</td>
-            {{/each}}
+    {{#if userGrid}}
+    {{#each userGrid}}
+      {{#if @first}}
+      <tr style="height:40px;">
+        <td rowspan="8" style="background:#B5D573; border:1px solid #9E9E9E; padding:8px 4px; height:320px;">
+          <div style="display:flex; flex-direction:column; align-items:center; height:100%;">
+            <div style="flex:1; display:flex; align-items:center;">
+              <span style="font-weight:700; color:#212121; font-size:12px; line-height:1.2;">隊員名</span>
+            </div>
+            <div>
+              <span style="font-weight:700; color:#212121; font-size:12px; line-height:1.2;">合計{{../userCount}}名</span>
+            </div>
+          </div>
+        </td>
+        {{#each cells}}
+        <td style="border:1px solid #9E9E9E; padding:4px 6px; font-weight:700; color:#212121; font-size:10px; vertical-align:middle; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{this}}</td>
+        {{/each}}
+      </tr>
+      {{else}}
+      <tr style="height:40px;">
+        {{#each cells}}
+        <td style="border:1px solid #9E9E9E; padding:4px 6px; font-weight:700; color:#212121; font-size:10px; vertical-align:middle; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{this}}</td>
+        {{/each}}
+      </tr>
+      {{/if}}
+    {{/each}}
+    {{else}}
+    <!-- No users case - 8 empty rows -->
+    <tr style="height:40px;">
+      <td rowspan="8" style="background:#B5D573; border:1px solid #9E9E9E; padding:0; margin:0;">
+        <table style="width:100%; height:100%; border-collapse:collapse; border-spacing:0;">
+          <tr style="height:240px;">
+            <td style="font-weight:700; color:#212121; font-size:12px; text-align:center; vertical-align:middle; line-height:1; padding:0; margin:0; writing-mode:vertical-rl; text-orientation:upright;">隊員名</td>
+          </tr>
+          <tr style="height:80px;">
+            <td style="font-weight:700; color:#212121; font-size:12px; text-align:center; vertical-align:middle; line-height:1; padding:0; margin:0; writing-mode:vertical-rl; text-orientation:upright;">合計0名</td>
           </tr>
         </table>
       </td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
     </tr>
-    <tr>
-      <td style="background:#bfe08b; font-weight:700; text-align:center; border:1px solid #9E9E9E; padding:10px;">合計{{userCount}}名</td>
-      <td style="border:1px solid #9E9E9E; min-height:28px;">&nbsp;</td>
+    <tr style="height:40px;">
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
     </tr>
+    <tr style="height:40px;">
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+    </tr>
+    <tr style="height:40px;">
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+    </tr>
+    <tr style="height:40px;">
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+    </tr>
+    <tr style="height:40px;">
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+    </tr>
+    <tr style="height:40px;">
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+    </tr>
+    <tr style="height:40px;">
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+      <td style="border:1px solid #9E9E9E; padding:4px 6px;">&nbsp;</td>
+    </tr>
+    {{/if}}
   </table>
 </div>
 

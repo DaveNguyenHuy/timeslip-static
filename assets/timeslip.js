@@ -125,9 +125,32 @@
     const primeOrgName = data.fixPartnerOrganization?.name || data.primeOrganization?.name || "";
     const constructionName = data.fixPartnerConstruction?.name || data.construction?.name || "";
     const users = [...(data.users || []), ...(data.partnerUsers || [])];
-    return {
+
+    console.log('DEBUG - data.users:', data.users);
+    console.log('DEBUG - data.partnerUsers:', data.partnerUsers);
+    console.log('DEBUG - combined users array:', users);
+    console.log('DEBUG - users.length:', users.length);
+
+    // Create 8x6 user grid (8 rows x 6 columns)
+    const userDisplays = users.map((u) => u.userCode ? `${u.userCode} ${u.name}` : u.name);
+    const userGrid = [];
+
+    for (let row = 0; row < 8; row++) {
+      const rowCells = [];
+      for (let col = 0; col < 6; col++) {
+        const index = row * 6 + col;
+        rowCells.push(userDisplays[index] || '');
+      }
+      userGrid.push({ cells: rowCells });
+    }
+
+    const companyLine = `${companyName}　${primeOrgName}`;
+
+    const context = {
       title: "警備服務報告書", // no page fraction
-      companyLine: `${companyName}　${primeOrgName}`,
+      companyName: companyName,
+      companyLine: companyLine,
+      organizationName: primeOrgName,
       dateDisplay: `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`,
       startTime: formatHHmm(data.startTime),
       endTime: formatHHmm(data.endTime),
@@ -137,9 +160,14 @@
       signerNote: data.signerNote || "",
       constructionName,
       sign: data.sign ? `data:image/png;base64,${data.sign}` : "",
-      users: users.map((u) => ({ display: u.userCode ? `${u.userCode} ${u.name}` : u.name })),
+      userGrid: userGrid,
       userCount: users.length,
     };
+
+    console.log('DEBUG - context.userCount:', context.userCount);
+    console.log('DEBUG - full context object:', context);
+
+    return context;
   }
 
   async function loadTemplate(path) {
@@ -186,7 +214,7 @@
     document.body.removeChild(reportRoot);
 
     const imgData = canvas.toDataURL("image/png");
-    const doc = new jsPDF({ unit: "mm", format: "a4" });
+    const doc = new jsPDF({ unit: "mm", format: "a4", orientation: "landscape" });
     const pageWidth = doc.internal.pageSize.getWidth();
     const pageHeight = doc.internal.pageSize.getHeight();
     const ratio = Math.min(pageWidth / canvas.width, pageHeight / canvas.height);
